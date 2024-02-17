@@ -1,0 +1,550 @@
+
+%-----------------------------------------------------------------------------------------------------------------------------------------------%
+%	The MIT License (MIT)
+%
+%	Copyright (c) 2021 Philip Empl
+%
+%	Permission is hereby granted, free of charge, to any person obtaining a copy
+%	of this software and associated documentation files (the "Software"), to deal
+%	in the Software without restriction, including without limitation the rights
+%	to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+%	copies of the Software, and to permit persons to whom the Software is
+%	furnished to do so, subject to the following conditions:
+%	
+%	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+%	IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+%	FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+%	AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+%	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+%	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+%	THE SOFTWARE.
+%	
+%
+%-----------------------------------------------------------------------------------------------------------------------------------------------%
+
+
+%============================================================================%
+%
+%	DOCUMENT DEFINITION
+%
+%============================================================================%
+
+\documentclass[10pt,A4,english]{article}	
+
+
+%----------------------------------------------------------------------------------------
+%	ENCODING
+%----------------------------------------------------------------------------------------
+
+% we use utf8 since we want to build from any machine
+\usepackage[utf8]{inputenc}		
+\usepackage[USenglish]{isodate}
+\usepackage{fancyhdr}
+\usepackage[numbers]{natbib}
+
+%----------------------------------------------------------------------------------------
+%	LOGIC
+%----------------------------------------------------------------------------------------
+
+% provides \isempty test
+\usepackage{xstring, xifthen}
+\usepackage{enumitem}
+\usepackage[english]{babel}
+\usepackage{blindtext}
+\usepackage{pdfpages}
+\usepackage{changepage}
+%----------------------------------------------------------------------------------------
+%	FONT BASICS
+%----------------------------------------------------------------------------------------
+
+% some tex-live fonts - choose your own
+
+%\usepackage[defaultsans]{droidsans}
+%\usepackage[default]{comfortaa}
+%\usepackage{cmbright}
+\usepackage[default]{raleway}
+%\usepackage{fetamont}
+%\usepackage[default]{gillius}
+%\usepackage[light,math]{iwona}
+%\usepackage[thin]{roboto} 
+
+% set font default
+\renewcommand*\familydefault{\sfdefault} 	
+\usepackage[T1]{fontenc}
+
+% more font size definitions
+\usepackage{moresize}
+
+%----------------------------------------------------------------------------------------
+%	FONT AWESOME ICONS
+%---------------------------------------------------------------------------------------- 
+
+% include the fontawesome icon set
+\usepackage{fontawesome}
+
+% use to vertically center content
+% credits to: http://tex.stackexchange.com/questions/7219/how-to-vertically-center-two-images-next-to-each-other
+\newcommand{\vcenteredinclude}[1]{\begingroup
+\setbox0=\hbox{\includegraphics{#1}}%
+\parbox{\wd0}{\box0}\endgroup}
+\newcommand{\tab}[1]{\hspace{.2\textwidth}\rlap{#1}}
+% use to vertically center content
+% credits to: http://tex.stackexchange.com/questions/7219/how-to-vertically-center-two-images-next-to-each-other
+\newcommand*{\vcenteredhbox}[1]{\begingroup
+\setbox0=\hbox{#1}\parbox{\wd0}{\box0}\endgroup}
+
+% icon shortcut
+\newcommand{\icon}[3] { 							
+	\makebox(#2, #2){\textcolor{maincol}{\csname fa#1\endcsname}}
+}	
+
+
+% icon with text shortcut
+\newcommand{\icontext}[4]{ 						
+	\vcenteredhbox{\icon{#1}{#2}{#3}}  \hspace{2pt}  \parbox{0.9\mpwidth}{\textcolor{#4}{#3}}
+}
+
+% icon with website url
+\newcommand{\iconhref}[5]{ 						
+    \vcenteredhbox{\icon{#1}{#2}{#5}}  \hspace{2pt} \href{#4}{\textcolor{#5}{#3}}
+}
+
+% icon with email link
+\newcommand{\iconemail}[5]{ 						
+    \vcenteredhbox{\icon{#1}{#2}{#5}}  \hspace{2pt} \href{mailto:#4}{\textcolor{#5}{#3}}
+}
+
+%----------------------------------------------------------------------------------------
+%	PAGE LAYOUT  DEFINITIONS
+%----------------------------------------------------------------------------------------
+
+% page outer frames (debug-only)
+% \usepackage{showframe}		
+
+% we use paracol to display breakable two columns
+\usepackage{paracol}
+\usepackage{tikzpagenodes}
+\usetikzlibrary{calc}
+\usepackage{lmodern}
+\usepackage{multicol}
+\usepackage{lipsum}
+\usepackage{atbegshi}
+% define page styles using geometry
+\usepackage[a4paper]{geometry}
+
+% remove all possible margins
+\geometry{top=1cm, bottom=1cm, left=1cm, right=1cm}
+
+\usepackage{fancyhdr}
+\pagestyle{empty}
+
+% space between header and content
+% \setlength{\headheight}{0pt}
+
+% indentation is zero
+\setlength{\parindent}{0mm}
+
+%----------------------------------------------------------------------------------------
+%	TABLE /ARRAY DEFINITIONS
+%---------------------------------------------------------------------------------------- 
+
+% extended aligning of tabular cells
+\usepackage{array}
+
+% custom column right-align with fixed width
+% use like p{size} but via x{size}
+\newcolumntype{x}[1]{%
+>{\raggedleft\hspace{0pt}}p{#1}}%
+
+
+%----------------------------------------------------------------------------------------
+%	GRAPHICS DEFINITIONS
+%---------------------------------------------------------------------------------------- 
+
+%for header image
+\usepackage{graphicx}
+
+% use this for floating figures
+% \usepackage{wrapfig}
+% \usepackage{float}
+% \floatstyle{boxed} 
+% \restylefloat{figure}
+
+%for drawing graphics		
+\usepackage{tikz}			
+\usepackage{ragged2e}	
+\usetikzlibrary{shapes, backgrounds,mindmap, trees}
+
+%----------------------------------------------------------------------------------------
+%	Color DEFINITIONS
+%---------------------------------------------------------------------------------------- 
+\usepackage{transparent}
+\usepackage{color}
+
+% primary color
+\definecolor{maincol}{RGB}{ 64,64,64}
+
+% accent color, secondary
+% \definecolor{accentcol}{RGB}{ 250, 150, 10 }
+
+% dark color
+\definecolor{darkcol}{RGB}{ 70, 70, 70 }
+\definecolor{darkblue}{RGB}{43, 91, 158}
+% light color
+\definecolor{lightcol}{RGB}{245,245,245}
+
+\definecolor{accentcol}{RGB}{59,77,97}
+
+
+
+
+% Package for links, must be the last package used
+\usepackage[hidelinks]{hyperref}
+
+% returns minipage width minus two times \fboxsep
+% to keep padding included in width calculations
+% can also be used for other boxes / environments
+\newcommand{\mpwidth}{\linewidth-\fboxsep-\fboxsep}
+	
+
+
+%============================================================================%
+%
+%	CV COMMANDS
+%
+%============================================================================%
+
+%----------------------------------------------------------------------------------------
+%	 CV LIST
+%----------------------------------------------------------------------------------------
+
+% renders a standard latex list but abstracts away the environment definition (begin/end)
+\newcommand{\cvlist}[1] {
+	\begin{itemize}{#1}\end{itemize}
+}
+
+%----------------------------------------------------------------------------------------
+%	 CV TEXT
+%----------------------------------------------------------------------------------------
+
+% base class to wrap any text based stuff here. Renders like a paragraph.
+% Allows complex commands to be passed, too.
+% param 1: *any
+\newcommand{\cvtext}[1] {
+	\begin{tabular*}{1\mpwidth}{p{0.98\mpwidth}}
+		\parbox{1\mpwidth}{#1}
+	\end{tabular*}
+}
+\newcommand{\cvtextsmall}[1] {
+	\begin{tabular*}{0.8\mpwidth}{p{0.8\mpwidth}}
+		\parbox{0.8\mpwidth}{#1}
+	\end{tabular*}
+}
+%----------------------------------------------------------------------------------------
+%	CV SECTION
+%----------------------------------------------------------------------------------------
+
+% Renders a a CV section headline with a nice underline in main color.
+% param 1: section title
+\newcommand{\cvsection}[1] {
+	\vspace{14pt}
+	\cvtext{
+		\textbf{\LARGE{\textcolor{darkcol}{#1}}}\\[-4pt]
+		\textcolor{darkblue}{ \rule{0.2\textwidth}{1.5pt} } \\
+	}
+}
+
+\newcommand{\cvsectionsmall}[1] {
+	\vspace{14pt}
+	\cvtext{
+		\textbf{\Large{\textcolor{darkcol}{#1}}}\\[-4pt]
+		\textcolor{accentcol}{ \rule{0.2\textwidth}{1.5pt} } \\
+	}
+}
+
+\newcommand{\cvheadline}[1] {
+	\vspace{16pt}
+	\cvtext{
+		\textbf{\Huge{\textcolor{accentcol}{#1}}}\\[-4pt]
+		 
+	}
+}
+
+\newcommand{\cvsubheadline}[1] {
+	\vspace{16pt}
+	\cvtext{
+		\textbf{\huge{\textcolor{darkcol}{#1}}}\\[-4pt]
+		 
+	}
+}
+%----------------------------------------------------------------------------------------
+%	META SKILL
+%----------------------------------------------------------------------------------------
+
+% Renders a progress-bar to indicate a certain skill in percent.
+% param 1: name of the skill / tech / etc.
+% param 2: level (for example in years)
+% param 3: percent, values range from 0 to 1
+\newcommand{\cvskill}[3] {
+	\begin{tabular*}{1\mpwidth}{p{0.72\mpwidth}  r}
+ 		\textcolor{black}{\textbf{#1}} & \textcolor{darkblue}{#2}\\
+	\end{tabular*}%
+	
+	\hspace{4pt}
+	\begin{tikzpicture}[scale=1,rounded corners=2pt,very thin]
+		\fill [lightcol] (0,0) rectangle (1\mpwidth, 0.15);
+		\fill [darkblue] (0,0) rectangle (#3\mpwidth, 0.15);
+  	\end{tikzpicture}%
+}
+
+
+%----------------------------------------------------------------------------------------
+%	 CV EVENT
+%----------------------------------------------------------------------------------------
+
+% Renders a table and a paragraph (cvtext) wrapped in a parbox (to ensure minimum content
+% is glued together when a pagebreak appears).
+% Additional Information can be passed in text or list form (or other environments).
+% the work you did
+% param 1: time-frame i.e. Sep 14 - Jan 15 etc.
+% param 2:	 event name (job position etc.)
+% param 3: Customer, Employer, Industry
+% param 4: Short description
+% param 5: work done (optional)
+% param 6: technologies include (optional)
+% param 7: achievements (optional)
+\newcommand{\cvevent}[7] {
+	
+	% we wrap this part in a parbox, so title and description are not separated on a pagebreak
+	% if you need more control on page breaks, remove the parbox
+	\parbox{\mpwidth}{
+		\begin{tabular*}{1\mpwidth}{p{0.66\mpwidth}  r}
+	 		\textcolor{black}{\textbf{#2}} & \colorbox{darkblue}{\makebox[0.32\mpwidth]{\textcolor{white}{\textbf{#1}}}} \\
+			\textcolor{maincol}{#3} & \\
+		\end{tabular*}\\[8pt]
+	
+		\ifthenelse{\isempty{#4}}{}{
+			\cvtext{#4}\\
+		}
+	}
+	\vspace{14pt}
+}
+
+
+%----------------------------------------------------------------------------------------
+%	 CV META EVENT
+%----------------------------------------------------------------------------------------
+
+% Renders a CV event on the sidebar
+% param 1: title
+% param 2: subtitle (optional)
+% param 3: customer, employer, etc,. (optional)
+% param 4: info text (optional)
+\newcommand{\cvmetaevent}[4] {
+	\textcolor{maincol} { \cvtext{\textbf{\begin{flushleft}#1\end{flushleft}}}}
+
+	\ifthenelse{\isempty{#2}}{}{
+	\textcolor{black} {\cvtext{\textbf{#2}} }
+	}
+
+	\ifthenelse{\isempty{#3}}{}{
+		\cvtext{{ \textcolor{maincol} {#3} }}\\
+	}
+
+	\cvtext{#4}\\[14pt]
+}
+
+%---------------------------------------------------------------------------------------
+%	QR CODE
+%----------------------------------------------------------------------------------------
+
+% Renders a qrcode image (centered, relative to the parentwidth)
+% param 1: percent width, from 0 to 1
+\newcommand{\cvqrcode}[1] {
+	\begin{center}
+		\includegraphics[width={#1}\mpwidth]{qrcode}
+	\end{center}
+}
+
+
+% HEADER AND FOOOTER 
+%====================================
+\newcommand\Header[1]{%
+\begin{tikzpicture}[remember picture,overlay]
+\fill[darkblue]
+  (current page.north west) -- (current page.north east) --
+  ([yshift=50pt]current page.north east|-current page text area.north east) --
+  ([yshift=50pt,xshift=-3cm]current page.north|-current page text area.north) --
+  ([yshift=10pt,xshift=-5cm]current page.north|-current page text area.north) --
+  ([yshift=10pt]current page.north west|-current page text area.north west) -- cycle;
+\node[font=\sffamily\bfseries\color{white},anchor=west,
+  xshift=0.7cm,yshift=-0.32cm] at (current page.north west)
+  {\fontsize{12}{12}\selectfont {#1}};
+\end{tikzpicture}%
+}
+
+\newcommand\Footer[1]{%
+\begin{tikzpicture}[remember picture,overlay]
+\fill[darkblue]
+  (current page.south east) -- (current page.south west) --
+  ([yshift=-80pt]current page.south east|-current page text area.south east) --
+  ([yshift=-80pt,xshift=-6cm]current page.south|-current page text area.south) --
+  ([xshift=-2.5cm,yshift=-10pt]current page.south|-current page text area.south) --	
+  ([yshift=-10pt]current page.south east|-current page text area.south east) -- cycle;
+\node[font=\color{darkblue},yshift=0.32cm,xshift=9cm] at (current page.south) {\fontsize{10}{10}\selectfont \textbf{\thepage}};
+\end{tikzpicture}%
+}
+
+
+%=====================================
+%============================================================================%
+%
+%
+%
+%	DOCUMENT CONTENT
+%
+%
+%
+%============================================================================%
+\begin{document}
+
+\columnratio{0.31}
+\setlength{\columnsep}{2.2em}
+\setlength{\columnseprule}{4pt}
+\colseprulecolor{white}
+
+
+% LEBENSLAUF HIERE
+\AtBeginShipoutFirst{\Header{CV}\Footer{1}}
+\AtBeginShipout{\AtBeginShipoutAddToBox{\Header{CV}\Footer{2}}}
+
+\newpage
+
+\colseprulecolor{lightcol}
+\columnratio{0.31}
+\setlength{\columnsep}{2.2em}
+\setlength{\columnseprule}{4pt}
+\begin{paracol}{2}
+
+
+\begin{leftcolumn}
+%---------------------------------------------------------------------------------------
+%	META IMAGE
+%----------------------------------------------------------------------------------------
+\includegraphics[width=\linewidth]{resources/image.jpg}	%trimming relative to image size
+
+%---------------------------------------------------------------------------------------
+%	META SKILLS
+%----------------------------------------------------------------------------------------
+	\fcolorbox{white}{white}{\begin{minipage}[c][2cm][c]{1\mpwidth}
+		\LARGE{\textbf{\textcolor{maincol}{Guilherme Steinert de Azevedo}}} \\[2pt]
+\end{minipage}} \\
+\icontext{CaretRight}{12}{Palhoça - Santa Catarina}{black}\\[6pt]
+\icontext{CaretRight}{12}{Brasileiro}{black}\\[6pt]
+
+\cvsection{Tecnologias}
+
+\cvskill{Java} {10+ anos} {0.5} \\[-10pt] 
+
+\cvskill{Git} {10+ anos} {0.5} \\[-10pt]
+
+\cvskill{Spring} {10+ anos} {0.4} \\[-10pt]
+
+\cvskill{Angular} {10+ anos} {0.15} \\[-10pt]
+
+\cvskill{PostgreSQL}{10+ anos}{0.15} \\[-10pt]
+
+\cvskill{Kotlin} {10+ anos} {0.1} \\[-10pt]
+
+\cvskill{Kubernetes} {10+ anos} {0.1} \\[-10pt]
+
+\cvskill{Microsserviços} {10+ anos} {0.1} \\[-10pt]
+
+\cvsection{Idiomas}
+
+\cvskill{Português} {Nativo} {1} \\[1pt]
+\cvskill{Inglês} {Nativo} {0.25} \\[-2pt]
+
+\cvsection{Contato}
+
+\icontext{MobilePhone}{16}{+55 48 99189-4679}{black}\\[6pt]
+\iconemail{Envelope}{16}{steinert999@outlook.com}{steinert.az99@gmail.com}{black}\\[6pt]
+\iconhref{Github}{16}{github.com/Steinert999}{https://github.com/Steinert999}{black}\\[6pt]
+\iconhref{Linkedin}{16}{linkedin.com/guilhermesteinert}{https://www.linkedin.com/in/guilhermesteinert}{black}
+
+\end{leftcolumn}
+\begin{rightcolumn}
+
+\cvsection{Bibliográfia}
+\vspace{4pt}
+
+\cvtext{Desenvolvedor de software com 5 anos de experiência com Java, especialmente focado no Spring. Atualmente trabalhando também com Kotlin e arquitetura de microserviços. Procurando um lugar que possa me trazer novos conhecimentos e ampliar os conhecimentos que eu já
+tenho}
+
+\vspace{8pt}
+\cvsection{Experiência}
+\vspace{1pt}
+
+\cvevent
+{Jan/2022 - Atual}
+    {Desenvolvedor Back-end}
+    {Invillia}
+    {Desenvolvimento voltado para o setor financeiro, através de uma empresa de terceirização, trabalhando com microserviços. \\Tecnologias Utilizadas: Java , Kotlin, Spring, Kubernetes. RabbitMQ, Kafka, Splunk, Oracle, MySQL, MongoDB, New Relic, HashiCorp Vault, AWS S3}
+    \vfill\null
+    
+\cvevent
+{Jun/2021 - Jan/2022}
+	{Desenvolvedor Fullstack}
+	{Capgemini}
+	{Desenvolvimento e Manutenção em diversos projetos, normalmente focados com tecnologia Java e Angular. \\ Tecnologias Utilizadas: Java, Hibernate, Git, Angular}
+	\vfill\null
+
+\cvevent
+{Out/2020 - Jun/2021}
+	{Desenvolvedor Back-end}
+	{Zalf Sistemas (Prolog App)}
+	{Desenvolvimento e Manutenção de sistema focado em gestão de frotas e pneus, atuando no Brasil e Paraguaí. \\ Tecnologias Utilizadas: Java, Spring boot, Hibernate, PostgreSQL, Git, Docker}
+	\vfill\null
+
+\cvevent
+{Out/2019 - Out/2020}
+	{Brasil Direct Software}
+	{Desenvolvedor Fullstack}
+	{Desevolvimento e Manutençao de sistemas legados envolvendo a Secretária do Estado da Saúde de Santa Catarina, através da terceirizada. \\ Tecnologias Utilizadas: Java, Angular, Spring, JSF, Hibernate, PostgreSQL, MySQL, Git}
+	\vfill\null
+	
+\cvevent
+{Dez/2018 - Out/2019}
+	{Operador de Implantação}
+	{Grupo Nexxera (Atualmente Grupo Nexxees)}
+	{Atuando como \grqq Suporte\grqq para clientes com primeiro contato às ferramentas da empresa, com relação a transações financeiras. \\ Tecnologias Utilizadas: Linux, Bash, Windows }
+	\vfill\null
+	
+\cvevent
+{Out/2018 - Dez/2018}
+	{Operador de Implantação (Estágio)}
+	{Grupo Nexxera (Atualmente Grupo Nexxees)}
+	{Atuando como \grqq Suporte\grqq para clientes com primeiro contato às ferramentas da empresa, com relação a transações financeiras. \\ Tecnologias Utilizadas: Linux, Bash, Windows }
+	\vfill\null
+\\	
+
+\newpage
+
+\cvsection{Education}
+
+\cvmetaevent
+{Jan/2018 - Nov/2023}
+{Bacharelado em Ciência da Computação}
+{IESGF - Instituto de Ensino Superior da Grande Florianópolis}
+{Situação: \grqq In progress\grqq}
+\cvmetaevent
+{Abr/2015 - Jan/2017}
+{Bacharelado em Design de Jogos e Entretenimento Digital}
+{UNIVALI - Universidade do Vale do Itajaí}
+{Situação: \grqq Incomplete\grqq}
+
+\end{rightcolumn}
+\end{paracol}
+
+
+\end{document}
