@@ -11,6 +11,8 @@
 \usepackage[pdftex]{hyperref}
 \usepackage{fancyhdr}
 \usepackage{fontawesome5}
+\usepackage{changepage}
+
 
 
 \pagestyle{fancy}
@@ -53,6 +55,13 @@
     \end{tabular*}\vspace{-5pt}
 }
 
+\newcommand{\resumeDescription}[1] {
+  \vspace{0.25cm}
+  \begin{adjustwidth}{0.5cm}{0.5cm}
+    #1
+  \end{adjustwidth}
+}
+
 \newcommand{\resumeSubItem}[2]{\resumeItem{#1}{#2}\vspace{-4pt}}
 
 \renewcommand{\labelitemii}{$\circ$}
@@ -61,6 +70,7 @@
 \newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
 \newcommand{\resumeItemListStart}{\begin{itemize}}
 \newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
 
 \newenvironment{header}{
   \setlength{\topsep}{0pt}\par\kern\topsep\centering\color{primaryColor}\linespread{1.5}
@@ -97,6 +107,13 @@
 \mbox{\hrefWithoutArrow{https://github.com/Steinert999}{{\small\faGithub}\hspace*{0.13cm}Steinert999}}
 \hspace*{1.25 cm}
 \end{header}
+%-----------ABOUT---------------------
+\section{About}
+\resumeDescription{
+  With six years of experience in software development, I specialize in Java and Kotlin, currently focusing on microservices.\\
+  I am completing my degree and seeking an environment that offers opportunities for continuous learning and growth.\\
+  Determined to tackle new challenges, I am ready to contribute in an environment that values innovation and technical excellence.
+}
 %-----------EDUCATION-----------------
 \section{Education}
   \resumeSubHeadingListStart
@@ -115,38 +132,38 @@
 
     \resumeSubheading
       {Invillia}{(Remote) São Paulo, Brazil}
-      {Software Engineer}{Jan. 2022 - Present}
+      {Middle Software Engineer}{Jan. 2022 - Present}
       \resumeItemListStart
         \resumeItem{Outsourcing for a financial company}
           {Working with microservices focused on authentication and clearing of financial transactions, requiring high availability and responsiveness.}
         \resumeItem{Used Technologies}
-          {Java, Kotlin, Python, Spring, Kubernetes, RabbitMQ, Kafka, Splunk, Oracle, MySQL, MongoDB, New Relic, HashiCorp Vault, AWS S3}
+          {Java, Kotlin, Python, Spring, Kubernetes, RabbitMQ, Kafka, Splunk, Oracle, MySQL, MongoDB, New Relic, HashiCorp Vault, AWS S3, Scrum}
       \resumeItemListEnd
 
     \resumeSubheading
       {Capgemini}{(Remote) São Paulo, Brazil}
-      {Software Engineer}{Jun. 2021 - Jan. 2022}
+      {Middle Software Engineer}{Jun. 2021 - Jan. 2022}
       \resumeItemListStart
         \resumeItem{Outsourcing for government}
                    {Worked with systems focused on the DETRAN vehicle auction in Rio Grande do Sul.}
         \resumeItem{Used technologies}
-          {Java, JPA, MySQL, Typescript, Angular, Spring, Node.js, CSS, HTML, GitLab}
+          {Java, JPA, MySQL, Typescript, Angular, Spring, Node.js, CSS, HTML, GitLab, Scrum}
               \resumeItemListEnd
 
     \resumeSubheading
       {Zalf Sistemas}{(Remote) Santa Catarina, Brazil}
-      {Software Engineer}{Oct. 2020 -- Jun. 2021}
+      {Middle Software Engineer}{Oct. 2020 -- Jun. 2021}
       \resumeItemListStart
         \resumeItem{Prolog App}
                    {Worked with Prolog; a system focused on fleet and tire management, acting in Brazil and Paraguay.}
         \vspace{-4mm}
         \resumeItem{Used technologies}
-          {Java, Spring, JPA, PostgreSQL, PLSQL, Github, Docker}
+          {Java, Spring, JPA, PostgreSQL, PLSQL, Github, Docker, Scrum}
       \resumeItemListEnd
 
       \resumeSubheading
       {Brazil Direct Software}{Santa Catarina, Brazil}
-      {Software Engineer}{Aug. 2020 - Oct. 2020}
+      {Middle Software Engineer}{Aug. 2020 - Oct. 2020}
       \resumeItemListStart
       \resumeItem{Outsourcing for government}
                  {Worked with systems focused on State Department of Health of Santa Catarina.}
@@ -186,15 +203,20 @@
 %--------PROGRAMMING SKILLS------------
 \section{Programming Skills}
  \resumeSubHeadingListStart
-   \item{
-     \textbf{Languages}{: Java, Kotlin, Typescript, Javascript, SQL, PostgreSQL PLSQL, Python}}
+     \item \textbf{Java}: aprox. 5 years
+     \item \textbf{Kotlin}: aprox. 1 year
+     \item \textbf{Typescript}: aprox. 2 years
+     \item \textbf{SQL}: aprox. 5 years
+     \item \textbf{PostgreSQL PLSQL}: aprox. 8 months
+     \item \textbf{Python}: aprox. 1 year
+     \item \textbf{Scrum}: aprox. 3 years
  \resumeSubHeadingListEnd
 
  %--------LANGUAGES------------
  \section{Languages}
  \resumeSubHeadingListStart
     \item{\textbf{Portuguese}{: Native}}
-    \item{\textbf{English}{: Basic}}
+    \item{\textbf{English}{: Intermediate}}
   \resumeSubHeadingListEnd
 %-------------------------------------------
 \end{document}
